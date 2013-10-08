@@ -75,8 +75,7 @@ public class TestDb {
 //		graphTree.addNode("TestTable", "TestItem", 0, "hihoho");
 //		graphTree.shutdown();
 //		HelperTreeDb helperTreeDb = new HelperTreeDb("graphDb");
-		TreeDbServer.start();
-		TreeDbServer.stop();
+		TreeMySql<Graph<Vm>> treeMySql = new TreeMySql<>("graphDb", "graph", "hahaha");
 	}
 
 }

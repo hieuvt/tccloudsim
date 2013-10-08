@@ -37,6 +37,7 @@ public class TpPowerVmAllocationPolicyMigrationLocalRegression extends
 		} else {
 			//return findHostTrafficEnergy((TpVm)vm, excludedHosts);
 			return findHostTraffic((TpVm) vm, excludedHosts);
+//			return super.findHostForVm(vm, excludedHosts);
 		}		
 	}
 
@@ -203,6 +204,7 @@ public class TpPowerVmAllocationPolicyMigrationLocalRegression extends
 				}
 			}
 		}
+		helperTreeDb.close();
 		return siblingHostList;
 
 	}

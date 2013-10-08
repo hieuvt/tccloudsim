@@ -14,6 +14,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="fnss/lib/jdom-2.0.4.jar"/>
 	<classpathentry kind="lib" path="jars/hsqldb.jar"/>
+	<classpathentry kind="lib" path="jars/mysql-connector-java-5.1.26-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

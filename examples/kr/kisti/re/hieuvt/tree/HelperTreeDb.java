@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.re.kisti.hieuvt.core.RandomConstantsTp;
+
 import org.hsqldb.Server;
 
 public class HelperTreeDb {
@@ -15,28 +17,25 @@ public class HelperTreeDb {
 	private String dbName;
 	private Connection connection;
 	
-	public HelperTreeDb(Server server, String dbName){
-//		setServer(server);
-//		setDbName(dbName);
-//		
-//		getServer().setDatabaseName(0, getDbName());
-//		getServer().setDatabasePath(0, "file:" + getDbName());
-//		getServer().start();
-		
-		try {
-			setConnection(DriverManager.getConnection(
-					"jdbc:hsqldb:hsql://localhost/" + getDbName(), "sa", ""));
-			System.out.println("Successfully connected");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public HelperTreeDb(Server server, String dbName){		
+//		try {
+//			setConnection(DriverManager.getConnection(
+//					"jdbc:hsqldb:hsql://localhost/" + getDbName(), "sa", ""));
+//			System.out.println("Successfully connected");
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+	
 	public HelperTreeDb(String dbName){
 		setDbName(dbName);
 		try {
-			setConnection(DriverManager.getConnection(
-					"jdbc:hsqldb:hsql://localhost/" + getDbName(), "sa", ""));
+//			setConnection(DriverManager.getConnection(
+//					"jdbc:hsqldb:hsql://localhost/" + getDbName(), "sa", ""));
+			setConnection(DriverManager.getConnection("jdbc:mysql://localhost/"
+					+ RandomConstantsTp.dbName + "?"
+					+ "user=tpUser&password=123456"));
 			System.out.println("Successfully connected");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

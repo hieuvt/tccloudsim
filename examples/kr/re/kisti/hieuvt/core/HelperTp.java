@@ -9,8 +9,9 @@ import java.util.Map;
 
 import kr.kisti.re.hieuvt.tree.HelperTree;
 import kr.kisti.re.hieuvt.tree.Node;
-import kr.kisti.re.hieuvt.tree.TreeDb;
+import kr.kisti.re.hieuvt.tree.TreeHsql;
 import kr.kisti.re.hieuvt.tree.TreeDbServer;
+import kr.kisti.re.hieuvt.tree.TreeMySql;
 import kr.kisti.re.hieuvt.tree.TreeNoDb;
 import kr.re.kisti.hieuvt.core.EdgeSw;
 import kr.re.kisti.hieuvt.core.TpHostUtilizationHistory;
@@ -160,11 +161,36 @@ public class HelperTp extends Helper {
 		String itemName = "graph";
 		double removeRatio = RandomConstantsTp.REMOVE_RATIO;
 		
-		TreeDb<Graph<Vm>> graphTree = new TreeDb<Graph<Vm>>(tableName, itemName, vmGraph.toString());
+//		TreeHsql<Graph<Vm>> graphTree = new TreeHsql<Graph<Vm>>(tableName, itemName, vmGraph.toString());
+		TreeMySql<Graph<Vm>> graphTree = new TreeMySql<Graph<Vm>>(tableName, itemName, vmGraph.toString());
 		addSubGraphToTree(graphTree, tableName, itemName, vmGraph, removeRatio);
 }
 
-	private static void addSubGraphToTree(TreeDb<Graph<Vm>> graphTree,
+	private static void addSubGraphToTree(TreeMySql<Graph<Vm>> graphTree,
+			String tableName, String itemName, Graph<Vm> graph,
+			double removeRatio) {
+		// TODO Auto-generated method stub
+		HelperGraph<Vm> helperGraph = new HelperGraph<Vm>();
+		int graphId = graphTree.getNodeByContent(tableName, itemName,
+				graph.toString());
+		List<Graph<Vm>> subGraphList = helperGraph.divideToSubGraphs(graph,
+				removeRatio);
+		for (Graph<Vm> subGraph : subGraphList) {
+			int id = graphTree.getNodeByContent(tableName, itemName,
+					subGraph.toString());
+			if (id == -1) {
+				graphTree.addNode(tableName, itemName, graphId,
+						subGraph.toString());
+			}
+			if (subGraph.getVertexList().size() != 1 && subGraph.getEdgeList().size() != 0) {
+				addSubGraphToTree(graphTree, tableName, itemName, subGraph,
+						removeRatio);
+			}
+		}
+	}
+
+
+	private static void addSubGraphToTree(TreeHsql<Graph<Vm>> graphTree,
 			String tableName, String itemName, Graph<Vm> graph,
 			double removeRatio) {
 		HelperGraph<Vm> helperGraph = new HelperGraph<Vm>();
@@ -576,6 +602,6 @@ public class HelperTp extends Helper {
 		}
 
 		Log.setDisabled(false);
-		TreeDbServer.stop();
+//		TreeDbServer.stop();
 	}
 }

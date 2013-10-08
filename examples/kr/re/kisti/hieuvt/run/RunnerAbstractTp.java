@@ -111,7 +111,7 @@ public class RunnerAbstractTp extends RunnerAbstract {
 			
 			CloudSim.terminateSimulation(RandomConstantsTp.SIMULATION_LIMIT);
 
-			TreeDbServer.start();
+//			TreeDbServer.start();
 			HelperTp.updateTrafficMap(vmList,
 					RandomConstantsTp.trafficMatrixFile, 0);
 			HelperTp.updateVmTrafficTree(vmList,

@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class RandomConstantsTp {
 
-	public final static int NUMBER_OF_VMS = 400;
+	public final static int NUMBER_OF_VMS = 310;
 	public final static long CLOUDLET_UTILIZATION_SEED = 1;
 	
 	public final static String trafficMatrixFile = "traffic/traffic_matrix.xml";
@@ -34,8 +34,8 @@ public class RandomConstantsTp {
 	public static final int CPU_NETWORK_BALANCE = 1;
 	public static final int NETWORK_INTENSIVE = 2;
 
-	public static final double RANK_NETWORK_INTENSIVE = 10;
-	public static final double RANK_CPU_NETWORK_BALANCE = 2;
+	public static final double RANK_NETWORK_INTENSIVE = 15;
+	public static final double RANK_CPU_NETWORK_BALANCE = 5;
 
 	public static final double CPU_INTENSIVE_MIN_UTILIZATION = 0.66;
 	public static final double CPU_NETWORK_BALANCE_MIN_UTILIZATION = 0.33;
