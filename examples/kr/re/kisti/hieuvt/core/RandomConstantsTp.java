@@ -18,17 +18,26 @@ import java.util.Map;
  */
 public class RandomConstantsTp {
 
-	public final static int NUMBER_OF_VMS = 310;
-	public final static long CLOUDLET_UTILIZATION_SEED = 1;
-	
-	public final static String trafficMatrixFile = "traffic/traffic_matrix.xml";
+	public final static int NUMBER_OF_VMS = 380;
+	public final static long CLOUDLET_UTILIZATION_SEED = 30;
+
+	public final static String trafficMatrixFile = "/home/hieu/traffic/traffic_matrix_"
+			+ NUMBER_OF_VMS + ".xml";
 	public final static String dbName = "graphDb";
+	
+	/**
+	 * Migration policy
+	 * 0 = Traffic Energy
+	 * 1 = Traffic
+	 * 2 = Energy
+	 */
+	public final static int POLICY = 1;
 
 	/**
-	 * VMs are classified into 3 categories based on their traffic 
-	 * CPU intensive: traffic < 1 Mbps, CPU utilization > 0.66
-	 * CPU - Network balance: 1 Mbps < traffic < 5, 0.33 < CPU utilization < 0.66 
-	 * Network intensive: traffic > 5 Mbps, CPU utilization < 0.33
+	 * VMs are classified into 3 categories based on their traffic CPU
+	 * intensive: traffic < 1 Mbps, CPU utilization > 0.66 CPU - Network
+	 * balance: 1 Mbps < traffic < 5, 0.33 < CPU utilization < 0.66 Network
+	 * intensive: traffic > 5 Mbps, CPU utilization < 0.33
 	 */
 	public static final int CPU_INTENSIVE = 0;
 	public static final int CPU_NETWORK_BALANCE = 1;
@@ -62,16 +71,16 @@ public class RandomConstantsTp {
 			put(3, 5);
 		}
 	};
-	
+
 	/**
 	 * Edge remove ratio each round
 	 */
 	public static double REMOVE_RATIO = 0.5;
-	
+
 	/**
 	 * #Simulation steps, each step equal to 5 mins
 	 */
 	public static int SIMULATION_PERIOD = 289;
-	public static int SIMULATION_LIMIT = 24 *60 * 60;
+	public static int SIMULATION_LIMIT = 24 * 60 * 60;
 
 }

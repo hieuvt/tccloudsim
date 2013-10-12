@@ -31,25 +31,28 @@ public class TpPowerVmAllocationPolicyMigrationLocalRegression extends
 
 	@Override
 	public PowerHost findHostForVm(Vm vm, Set<? extends Host> excludedHosts) {
-//		 return super.findHostForVm(vm, excludedHosts);
-		if (CloudSim.clock() < 1){
-			return findHostSimple((TpVm)vm);
-		} else {
-			//return findHostTrafficEnergy((TpVm)vm, excludedHosts);
+		// return super.findHostForVm(vm, excludedHosts);
+		if (CloudSim.clock() < 1) {
+			return findHostSimple((TpVm) vm);
+		} else if (RandomConstantsTp.POLICY == 0){	
+				return findHostTrafficEnergy((TpVm) vm, excludedHosts);
+		} else if (RandomConstantsTp.POLICY == 1){
 			return findHostTraffic((TpVm) vm, excludedHosts);
-//			return super.findHostForVm(vm, excludedHosts);
-		}		
+		} else {
+			return super.findHostForVm(vm, excludedHosts);
+		}
 	}
 
-	private PowerHost findHostSimple(TpVm vm){
+	private PowerHost findHostSimple(TpVm vm) {
 		System.out.println("VM: " + vm.getId());
 		for (Host host : getHostList()) {
 			if (host.isSuitableForVm(vm)) {
 				return (PowerHost) host;
 			}
 		}
-	return null;
+		return null;
 	}
+
 	private PowerHost findHostTrafficEnergy(TpVm vm,
 			Set<? extends Host> excludedHosts) {
 		System.out.println("VM: " + vm.getId());

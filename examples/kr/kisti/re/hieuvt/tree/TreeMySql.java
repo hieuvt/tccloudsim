@@ -34,7 +34,7 @@ public class TreeMySql<T> extends TreeDb<T> {
 							" (id int not null auto_increment," + 
 							" primary key (id), " +   
 							getItemName() + 
-							" varchar(1200) not null," +
+							" varchar(1600) not null," +
 							" parentId int default null" +
 							" );")
 					.execute();

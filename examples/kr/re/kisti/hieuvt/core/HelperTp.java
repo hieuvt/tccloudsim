@@ -1,6 +1,8 @@
 package kr.re.kisti.hieuvt.core;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import org.cloudbus.cloudsim.CloudletSchedulerDynamicWorkload;
 import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.Pe;
+import org.cloudbus.cloudsim.UtilizationModelStochastic;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmSchedulerTimeSharedOverSubscription;
 import org.cloudbus.cloudsim.examples.power.Constants;
@@ -128,7 +131,6 @@ public class HelperTp extends Helper {
 		Log.formatLine("# CPU Intensive: " + numCpuIntensive);
 	}
 
-	
 	public static void updateVmTrafficTree(List<Vm> vmList,
 			String trafficMatrixFile, int trafficSeq) {
 		List<Edge<Vm>> edgeList = new ArrayList<Edge<Vm>>();
@@ -162,6 +164,7 @@ public class HelperTp extends Helper {
 		double removeRatio = RandomConstantsTp.REMOVE_RATIO;
 		
 //		TreeHsql<Graph<Vm>> graphTree = new TreeHsql<Graph<Vm>>(tableName, itemName, vmGraph.toString());
+
 		TreeMySql<Graph<Vm>> graphTree = new TreeMySql<Graph<Vm>>(tableName, itemName, vmGraph.toString());
 		addSubGraphToTree(graphTree, tableName, itemName, vmGraph, removeRatio);
 }
@@ -523,6 +526,32 @@ public class HelperTp extends Helper {
 			System.out.println("Traffic cost: " + trafficCost);
 			System.out.println("# migration: " + numberOfMigrations);
 			System.out.println("SLA: " + sla);
+			
+			File file = new File(outputFolder
+					+ "/log/"
+					+ RandomConstantsTp.NUMBER_OF_VMS + "_"
+					+ RandomConstantsTp.CLOUDLET_UTILIZATION_SEED + "_"
+					+ RandomConstantsTp.POLICY + ".txt");
+			try {
+				file.createNewFile();
+				
+				FileWriter fw = new FileWriter(file.getAbsolutePath());
+				BufferedWriter bw = new BufferedWriter(fw);
+				bw.write("Energy: " + (new Double(energy)).toString());
+				bw.newLine();
+				bw.write("Traffic cost: " + (new Double(trafficCost)).toString());
+				bw.newLine();
+				bw.write("# migration: " + (new Integer(numberOfMigrations)).toString());
+				bw.newLine();
+				bw.write("SLA: " + (new Double(sla)).toString());
+				bw.newLine();
+				bw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 
 			// Log.printLine(String.format("SLA time per VM with migration: %.2f%%",
 			// slaTimePerVmWithMigration * 100));
