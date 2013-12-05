@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import kr.kisti.re.hieuvt.tree.TreeDbServer;
 import kr.re.kisti.hieuvt.core.HelperTp;
 import kr.re.kisti.hieuvt.core.PowerVmSelectionPolicyMaximumTraffic;
 import kr.re.kisti.hieuvt.core.RandomConstantsTp;
@@ -16,6 +15,7 @@ import kr.re.kisti.hieuvt.core.TpDatacenterBroker;
 import kr.re.kisti.hieuvt.core.TpPowerVmAllocationPolicyMigrationLocalRegression;
 import kr.re.kisti.hieuvt.core.TpSw;
 import kr.re.kisti.hieuvt.core.TpVm;
+import kr.re.kisti.hieuvt.tree.TreeDbServer;
 
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.Log;

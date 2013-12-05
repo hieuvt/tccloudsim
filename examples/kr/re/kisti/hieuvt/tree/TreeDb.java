@@ -1,4 +1,4 @@
-package kr.kisti.re.hieuvt.tree;
+package kr.re.kisti.hieuvt.tree;
 
 import java.sql.Connection;
 import java.util.List;

@@ -18,8 +18,8 @@ import java.util.Map;
  */
 public class RandomConstantsTp {
 
-	public final static int NUMBER_OF_VMS = 380;
-	public final static long CLOUDLET_UTILIZATION_SEED = 30;
+	public final static int NUMBER_OF_VMS = 340;
+	public final static long CLOUDLET_UTILIZATION_SEED = 2;
 
 	public final static String trafficMatrixFile = "/home/hieu/traffic/traffic_matrix_"
 			+ NUMBER_OF_VMS + ".xml";

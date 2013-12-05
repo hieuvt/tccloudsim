@@ -2,7 +2,7 @@ package kr.re.kisti.hieuvt.core;
 
 import java.util.List;
 
-import kr.kisti.re.hieuvt.tree.Node;
+import kr.re.kisti.hieuvt.tree.Node;
 
 import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.Pe;

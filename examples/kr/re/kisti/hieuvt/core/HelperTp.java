@@ -9,12 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import kr.kisti.re.hieuvt.tree.HelperTree;
-import kr.kisti.re.hieuvt.tree.Node;
-import kr.kisti.re.hieuvt.tree.TreeHsql;
-import kr.kisti.re.hieuvt.tree.TreeDbServer;
-import kr.kisti.re.hieuvt.tree.TreeMySql;
-import kr.kisti.re.hieuvt.tree.TreeNoDb;
 import kr.re.kisti.hieuvt.core.EdgeSw;
 import kr.re.kisti.hieuvt.core.TpHostUtilizationHistory;
 import kr.re.kisti.hieuvt.core.TpVm;
@@ -24,6 +18,12 @@ import kr.re.kisti.hieuvt.graph.Edge;
 import kr.re.kisti.hieuvt.graph.Graph;
 import kr.re.kisti.hieuvt.graph.HelperGraph;
 import kr.re.kisti.hieuvt.graph.Vertex;
+import kr.re.kisti.hieuvt.tree.HelperTree;
+import kr.re.kisti.hieuvt.tree.Node;
+import kr.re.kisti.hieuvt.tree.TreeDbServer;
+import kr.re.kisti.hieuvt.tree.TreeHsql;
+import kr.re.kisti.hieuvt.tree.TreeMySql;
+import kr.re.kisti.hieuvt.tree.TreeNoDb;
 
 import org.cloudbus.cloudsim.CloudletSchedulerDynamicWorkload;
 import org.cloudbus.cloudsim.Host;

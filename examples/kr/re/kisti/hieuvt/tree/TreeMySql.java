@@ -1,6 +1,5 @@
-package kr.kisti.re.hieuvt.tree;
+package kr.re.kisti.hieuvt.tree;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,31 +8,35 @@ import java.util.List;
 
 import kr.re.kisti.hieuvt.core.RandomConstantsTp;
 
-import org.hsqldb.Server;
+public class TreeMySql<T> extends TreeDb<T> {
 
-public class TreeHsql<T> extends TreeDb<T> {
-
-	public TreeHsql(String tableName,
-			String itemName, String rootContent) {
+	public TreeMySql(String tableName, String itemName, String rootContent) {
 		super(tableName, itemName, rootContent);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void initDb() {
 		// TODO Auto-generated method stub
 		try {
-			Class.forName("org.hsqldb.jdbcDriver");
-			setConnection(DriverManager.getConnection(
-					"jdbc:hsqldb:hsql://localhost/" + RandomConstantsTp.dbName, "sa", ""));
-			getConnection().prepareStatement(
-					"drop table " + getTableName() + " if exists;").execute();
+			Class.forName("com.mysql.jdbc.Driver");
+			setConnection(DriverManager.getConnection("jdbc:mysql://localhost/"
+					+ RandomConstantsTp.dbName + "?"
+					+ "user=tpUser&password=123456"));
+			getConnection().prepareStatement("drop table if exists "
+			// + RandomConstantsTp.dbName + "."
+					+ getTableName() + ";").execute();
+			System.out.println("Droped table");
 			getConnection()
 					.prepareStatement(
-							"create table "
-									+ getTableName()
-									+ " (id integer generated always as identity primary key, " 
-									+ getItemName()
-									+ " varchar(1200) unique not null, parentId integer default null, visited boolean default false);")
+							"create table "	+ 
+							getTableName() + 
+							" (id int not null auto_increment," + 
+							" primary key (id), " +   
+							getItemName() + 
+							" varchar(1600) not null," +
+							" parentId int default null" +
+							" );")
 					.execute();
 			getConnection().prepareStatement(
 					"insert into " + getTableName() + " (" + getItemName()
@@ -47,7 +50,7 @@ public class TreeHsql<T> extends TreeDb<T> {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
 	public void addNode(String tableName, String itemName, int parentId,
 			String content) {
@@ -61,7 +64,7 @@ public class TreeHsql<T> extends TreeDb<T> {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
 	public int getNodeByContent(String tableName, String itemName,
 			String content) {
@@ -81,7 +84,7 @@ public class TreeHsql<T> extends TreeDb<T> {
 
 		return contentId;
 	}
-
+	
 	@Override
 	public List<String> getAllLeafNodes(String tableName, String itemName) {
 		List<String> leafNodes = new ArrayList<String>();
@@ -99,4 +102,5 @@ public class TreeHsql<T> extends TreeDb<T> {
 		}
 		return leafNodes;
 	}
+
 }
